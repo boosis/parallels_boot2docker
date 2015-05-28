@@ -1,2 +1,3 @@
 # parallels_boot2docker
-boot2docker with parallels
+
+Uses Parallels VM for boot2docker
