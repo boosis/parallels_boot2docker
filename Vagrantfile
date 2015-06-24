@@ -12,6 +12,14 @@ Vagrant.configure(2) do |config|
     config.vm.synced_folder "/Users/bill/work/", "/work/", type: "nfs"
     config.ssh.username = 'docker'
     config.ssh.password = 'tcuser'
+
+    config.vm.provider "parallels" do |pl, override|
+      pl.customize ["set", :id, "--time-sync", "off", "--on-window-close", "shutdown", "--autostop", "stop", "--tools-autoupdate", "on"]
+      pl.update_guest_tools = true
+      pl.optimize_power_consumption = false
+      pl.memory = "2048"
+      pl.cpus = "4"
+    end
     # Fix busybox/udhcpc issue
     config.vm.provision :shell do |s|
       s.inline = <<-EOT
